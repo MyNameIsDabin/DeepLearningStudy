@@ -8,7 +8,7 @@ import matplotlib.pylab as plt
 train_loss_list = []
 
 # 하이퍼 파라미터
-iters_num = 10 # 반복 횟수
+iters_num = 10000 # 반복 횟수
 train_size = x_train.shape[0]
 batch_size = 100 # 미니 배치 사이즈
 learning_rate = 0.1
