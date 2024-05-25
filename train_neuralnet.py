@@ -9,9 +9,9 @@ import matplotlib.pylab as plt
 network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
 
 # 하이퍼파라미터
-iters_num = 600  # 반복 횟수를 적절히 설정한다.
+iters_num = 60  # 반복 횟수를 적절히 설정한다.
 train_size = x_train.shape[0]
-batch_size = 100   # 미니배치 크기
+batch_size = 10   # 미니배치 크기
 learning_rate = 0.1
 
 train_loss_list = []
@@ -19,7 +19,7 @@ train_acc_list = []
 test_acc_list = []
 
 # 1에폭당 반복 수
-iter_per_epoch = max(train_size / batch_size, 1)
+iter_per_epoch = batch_size #max(train_size / batch_size, 1)
 
 for i in range(iters_num):
     # 미니배치 획득
@@ -56,4 +56,10 @@ plt.xlabel("epochs")
 plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
+plt.show()
+
+x = np.arange(0, iters_num)
+y = np.array(train_loss_list)
+plt.plot(x, y)
+plt.ylim(-0.1, 5)
 plt.show()
