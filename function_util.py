@@ -7,12 +7,16 @@ def step_function(x):
 def sigmoid(x):
     return 1 / (1 + np.exp(-x)) # 넘파이 배열을 반환하고 정수와 더하는 과정에서 브로드 캐스트
 
-def softmax(a):
-    c = np.max(a)
-    exp_a = np.exp(a - c)
-    sum_exp_a = np.sum(exp_a)
-    y = exp_a / sum_exp_a
-    return y
+def softmax(x):
+    if x.ndim == 2:
+        x = x - x.max(axis=1, keepdims=True)
+        x = np.exp(x)
+        x /= x.sum(axis=1, keepdims=True)
+    elif x.ndim == 1:
+        x = x - np.max(x)
+        x = np.exp(x) / np.sum(np.exp(x))
+
+    return x
 
 def cross_entropy_error(y, t):
     if y.ndim == 1:
