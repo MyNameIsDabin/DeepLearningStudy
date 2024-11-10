@@ -30,11 +30,14 @@ def numerical_diff(f, x):
     h = 1e-4 # 대충 이정도로 10의 -4승 값 정도로 좋은 결과를 얻는다고 알려졌다 
     return (f(x + h) - f(x - h)) / (2 * h)
 
-def numerical_gradient(f, x):
+
+## f(net.W) => net.loss(x, t);
+def numerical_gradient(f, x): # x : net.W
     h = 1e-4 # 0.0001
     grad = np.zeros_like(x) # 2 x 3
     
     it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+    
     while not it.finished:
         idx = it.multi_index
         tmp_val = x[idx]
@@ -43,10 +46,10 @@ def numerical_gradient(f, x):
 
         x[idx] = tmp_val - h 
         fxh2 = f(x) # f(x-h)
-        grad[idx] = (fxh1 - fxh2) / (2*h)                                                                                                                                                                                                                                                                                                                                                                                               
+        grad[idx] = (fxh1 - fxh2) / (2*h)
         
         x[idx] = tmp_val # 값 복원
-        it.iternext()   
+        it.iternext()
         
     return grad
     

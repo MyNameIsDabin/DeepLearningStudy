@@ -19,7 +19,6 @@ def init_network():
 def predict(network, x):
     W1, W2, W3 = network['W1'], network['W2'], network['W3']
     b1, b2, b3 = network['b1'], network['b2'], network['b3']
-
     a1 = np.dot(x, W1) + b1
     z1 = sigmoid(a1)
     a2 = np.dot(z1, W2) + b2
@@ -41,3 +40,8 @@ for i in range(0, len(x), batch_size):
     accuracy_cnt += np.sum(p == t[i:i+batch_size])
 
 print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
+
+
+u = np.array([1,0,0,0,0,0,0,0,0,0])
+
+print(str(u.reshape(1, u.size)))

@@ -18,7 +18,7 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
-# 1에폭당 반복 수
+# 1에폭당 반복 수 ( 60000 / 1000 )
 iter_per_epoch = max(train_size / batch_size, 1)
 
 for i in range(iters_num):
@@ -28,8 +28,8 @@ for i in range(iters_num):
     t_batch = t_train[batch_mask]
     
     # 기울기 계산
-    #grad = network.numerical_gradient(x_batch, t_batch)
-    grad = network.gradient(x_batch, t_batch)
+    grad = network.numerical_gradient(x_batch, t_batch)
+    #grad = network.gradient(x_batch, t_batch)
     
     # 매개변수 갱신
     for key in ('W1', 'b1', 'W2', 'b2'):
